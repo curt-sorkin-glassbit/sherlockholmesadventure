@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <link rel=stylesheet href='css/style.css'>
+    <link href='http://fonts.googleapis.com/css?family=Luckiest+Guy' rel='stylesheet' type='text/css'>
+
+    <script type="text/javascript">
+
+        var message = [];
+        var gameForm = ' Your Input:<input type="text" id="answer"> <input type ="button" id ="enter" onclick="yourMove()" value = "enter">';
+        var stage = 1;
+        var number = 1;
+
+        function stuff() {
+            //stage 1
+            message[1] = "You are Sherlock Holmes. Watson has brought you a message. It reads: Do you want to play a game?";
+            message[2] = "The room explodes. You are dead. No Reichenbach Falls for you!"
+
+            //stage 2
+            message[3] = "Somehow Moriarty has heard you! A raven flies in the window. In his beak is a small monkey skull. On the skull is written the words: Do you know the password?";
+            message[4] = "The raven rotates the skull until the word NO is shown. Then it turns the skull again until it reads - Do you know the password?";
+
+            //stage 3   choose x or y
+            message[5] = " </p> ";
+            message[5] += " <p> Type x or y to continue.</p> ";
+
+            //stage4
+            message[6] = "";
+            message[7] = "";
+
+            var respond = document.getElementById("container");
+            var input = document.getElementById("input_form");
+            respond.innerHTML = message[1];
+            input.innerHTML = gameForm;
+        }
+
+        function yourMove() {
+            respond = document.getElementById("container");
+            input = document.getElementById("input_form");
+            answer = document.getElementById("answer").value;
+            ///////////////////////////////////////////////
+            if (stage == 1 && answer == "yes") {
+                number = 3;
+                stage = 2;
+            }
+            else if (stage == "no") {
+                number = 1;
+            }
+            ////////////////////////////////////////////////////////////////////
+            if (stage == 2 && answer == "no") {
+                number = 5;
+                stage = 4;
+            }
+            else{
+                number =4;
+            }
+            if (stage == 4 && answer == "IRC") {
+                stage = 5;
+                number = 6;
+            }
+            if (stage == 4 && answer == "email") {
+                stage = 5;
+                number = 7;
+            }
+            respond.innerHTML = message[number];
+            input.innerHTML = gameForm;
+            // I have deliberately not used case/switch statements if/else is good enough. A ninja can pick up case/switch in their own time.
+
+        }
+
+        function completed() {
+            http_message = "http://46.";
+
+            if (email_complete == true) {
+                http_message = http_message + "19.";
+            }
+            else {
+                http_message = http_message + "__.";
+            };
+            if (irc_complete == true) {
+                http_message = http_message + "37.";
+            }
+            else {
+                http_message = http_message + "__.";
+            };
+            if (ftp_complete == true) {
+                http_message = http_message + "66";
+            }
+            else {
+                http_message = http_message + "__";
+            };
+            return http_message;
+        }
+    </script>
+
+</head>
+
+<body onload = "stuff()">
+
+    <div id="container"></div>
+    <div id="input_form"></div>
+    <div id="http">
+
+</body>
+
+</html>
